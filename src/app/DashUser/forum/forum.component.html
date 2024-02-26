@@ -94,8 +94,8 @@
 
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#exampleModal" (click)="editForum(forum)">Modifier</button>
-                                    <a class="btn  mx-2" style="color:black">Supprimer</a>
-                                    
+                                    <a class="btn  mx-2" style="color:black" (click)="SupprimerForum(selectedForumId.id)" >Supprimer</a>
+
                                 </div>
                             </div>
                         </div>
@@ -160,34 +160,34 @@
                     <!-- <form [formGroup]="editForm" (ngSubmit)="submitForm()">
                         <label for="edit-titre">Titre:</label>
                         <input type="text" id="edit-titre" formControlName="titre">
-                        
+
                         <label for="edit-image">Image:</label>
                         <input type="file" id="edit-image" (change)="onchange($event)" formControlName="image">
-                        
+
                         <label for="edit-texte">Texte:</label>
                         <textarea id="edit-texte" formControlName="texte"></textarea>
-                        
+
                         <button type="submit">Enregistrer les modifications</button>
                     </form> -->
-                    <form [formGroup]="editForm" (ngSubmit)="submitFormEdit()">
+                    <form [formGroup]="editForm" (ngSubmit)="ModifierForum()">
                         <div class="modal-body">
                             <div class="mb-3 text-dark">
                                 <label for="nom" class="form-label">Titre</label>
-                                <input type="text" class="form-control" formControlName="titre" id="titre">
+                                <input type="text" class="form-control" formControlName="titre" id="titre" [(ngModel)]="titre">
                             </div>
                             <div class="mb-3 text-dark">
                                 <!-- <label for="avatar">Choisir une Image</label> -->
                                 <input (change)="onchange($event)" type="file" id="image" name="image"
-                                    formControlName="image" accept="image/png, image/jpeg" />
+                                    formControlName="image" accept="image/png, image/jpeg" [(ngModel)]="image" />
                             </div>
                             <div class="mb-3 text-dark">
                                 <label for="description" class="form-label" style="color:black">Description</label>
                                 <textarea class="form-control" id="description" formControlName="texte" rows="3"
-                                    style="color:black"></textarea>
+                                    style="color:black" [(ngModel)]="texte" ></textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Modifier</button>
+                            <button type="submit" class="btn btn-primary" (click)="ModifierForum()" >Modifier</button>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
                         </div>
                     </form>
