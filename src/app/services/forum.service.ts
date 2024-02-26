@@ -2,6 +2,7 @@ import { apiUrl } from './apiUrl';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -30,10 +31,20 @@ export class ForumService {
   }
 
   updateForum(id: number, forum: any): Observable<any> {
-    return this.http.put<any>(`${apiUrl}/update_forum/{forum_Communication}${id}`, forum);
+    return this.http.put<any>(`${apiUrl}/update_forum/${id}`, forum);
   }
 
   deleteForum(id: number): Observable<any> {
-    return this.http.delete<any>(`${apiUrl}/${id}`);
+    return this.http.delete<any>(`${apiUrl}/supprimer_forum/${id}`);
+  }
+
+  alertMessage(icon: any, title: any, text: any) {
+    Swal.fire({
+      icon: icon,
+      title: title,
+      text: text,
+      showConfirmButton: false,
+      timer: 900,
+    });
   }
 }

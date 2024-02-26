@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { ForumService } from 'src/app/services/forum.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-forum',
@@ -13,10 +14,14 @@ export class ForumComponent implements OnInit {
   forums: any[] = [];
   forumForm!: FormGroup;
   editForm!: FormGroup; // Formulaire pour la modification
-  selectedForumId!: number;
+  // selectedForumId!: number;
+  selectedForumId:any = {};
   file: any;
   blocChoice = 0;
-  
+  image: any;
+  texte: any;
+  titre: any;
+
   changeBloc(choice: any) {
     this.blocChoice = choice;
   }
@@ -67,10 +72,10 @@ export class ForumComponent implements OnInit {
         formData.append('titre', this.forumForm.value.titre);
         formData.append('texte', this.forumForm.value.texte);
         formData.append('image', this.file);
-  
+
         this.forumService.addForum(formData).subscribe(
           (response) => {
-            console.log(response);
+            // console.log(response);
             // Gérer la réponse de l'ajout
             // ...
             this.forums.unshift(this.forumForm.value)
@@ -79,38 +84,63 @@ export class ForumComponent implements OnInit {
             this.getForums();
           },
           (error) => {
-            console.error('Erreur lors de l\'ajout du forum :', error);
+            // console.error('Erreur lors de l\'ajout du forum :', error);
           }
-        ); 
+        );
+  }
+
+  ModifierForum() {
+    const formData = new FormData();
+    formData.append('image', this.file);
+    const data = {
+      titre: this.titre,
+      texte: this.texte,
+      // image: this.image
+    }
+
+    console.log(data);
+    this.forumService.updateForum(this.selectedForumId, data).subscribe(
+      (response) => {
+        // La mise à jour a réussi, faire quelque chose si nécessaire
+        console.log('La ressource a été mise à jour avec succès :', response);
+        this.getForums(); // Mettre à jour la liste des ressources après la modification
+        // Réinitialiser le formulaire ou effectuer d'autres actions nécessaires
+      },
+      (error) => {
+        // Une erreur s'est produite lors de la mise à jour
+        console.error('Erreur lors de la mise à jour de la ressource :', error);
+        // Gérer l'erreur ou afficher un message à l'utilisateur
+      }
+      );
+      console.log('je suis le formdata',formData);
   }
 
 
-  submitFormEdit(){
-    // Mode modificationt
-      const formData = new FormData();
-      formData.append('titre', this.editForm.value.titre);
-      formData.append('texte', this.editForm.value.texte);
-      formData.append('image', this.file);
-
-
-      
-      console.log(formData, "apres soumission");
-      
-
-      this.forumService.updateForum(this.selectedForumId, formData).subscribe(
-        (response) => {
-          console.log(response);
-          // Gérer la réponse de la mise à jour
-          // ...
-
-          this.resetForm();
+  SupprimerForum(id: number) {
+    console.log('je suis id',id);
+    Swal.fire({
+      title: 'Êtes-vous sûr?',
+      text: 'Vous ne pourrez pas revenir en arrière après cette action!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor:  '#E75761',
+      cancelButtonColor: '#C5C7A7',
+      confirmButtonText: 'Oui, supprimer!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.forumService.deleteForum(id).subscribe(() => {
+          console.log('je suis id',id);
+          this.forumService.alertMessage(
+            'success',
+            'Supprimé!',
+            'Produit supprimé avec succès'
+          );
           this.getForums();
-          this.blocChoice = 0
-        },
-        (error) => {
-          console.error('Erreur lors de la mise à jour du forum :', error);
-        }
-      );
+        });
+      }
+    });
+    console.log('je suis id',id);
+
   }
 
 
@@ -120,9 +150,8 @@ export class ForumComponent implements OnInit {
       (response) => {
         if ('forums' in response) {
           this.forums = response.forums.reverse();
-          console.log(this.forums);
-          
         }
+        console.log('forums',this.forums);
         console.log(response);
       },
       (error) => {
@@ -141,7 +170,7 @@ export class ForumComponent implements OnInit {
     this.selectedForumId = forum.id;
     this.editForm.patchValue({
       titre: forum.titre,
-      image: forum.image,
+      // image: forum.image,
       texte: forum.texte,
 
     });
@@ -153,7 +182,7 @@ export class ForumComponent implements OnInit {
     this.editForm.reset();
     this.selectedForumId;
   }
-  
+
   logout() {
     this.authservice.logout().subscribe((response) => {
       console.log(response);
