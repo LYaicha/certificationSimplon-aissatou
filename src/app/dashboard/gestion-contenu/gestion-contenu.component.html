@@ -1,0 +1,372 @@
+
+
+<!-- sidebar debut -->
+
+
+<div class="sidebar">
+  <div class="sidebar-brand">
+    <img src="../../../assets/img/Logo2.png" alt="">
+  </div>
+    
+    <div class="sidebar-menu">
+      <div class="image"><img src="/assets/DEM-removebg-preview.png" alt=""></div>
+
+      <ul>
+        <li>
+          <a  class="switch" [routerLink]="['/dashboard']">
+            <span class="fas fa-tachometer-alt"></span>
+            <span>Tableau de board</span>
+          </a>
+        </li>
+        <li>
+          <a  class="switch" [routerLink]="['/listepatientesAdmin']">
+            <span class="fas fa-users" ></span>
+            <span>Listes patientes</span>
+          </a>
+        </li>
+        <!-- <li>
+          <a  class="active">
+            <span class="fas fa-book-reader"  [routerLink]="['/gestionContenuAdmin']"></span>
+            <span>Ressources</span>
+          </a>
+        </li> -->
+        <li>
+          <a  class="active" >
+            <span><i class="fas fa-comments"></i></span>
+            <span>Gestion Contenu</span>
+          </a>
+        </li>
+        <li>
+          <a   [routerLink]="['/ajoutPersoAdmin']">
+            <span><i class="fas fa-user-plus" ></i></span>
+            <span>Gestion Personnel</span>
+          </a>
+        </li>
+        <div class="logout mt-5">
+          <a (click)="logout()">
+            <i class="fas fa-sign-out-alt"></i> Deconnexion
+        </a>
+        </div>
+      
+      </ul>
+
+    </div>
+</div>    
+  
+  <!-- sidebar Fin -->
+  
+  <!-- contenuDash debut -->
+  
+  <div class="main-content">
+    <header class="headDash">
+      <!-- <h2>
+        <label for="nav-toggle">
+          <span class="fas fa-bars"></span>
+        </label>
+        Dashboard
+      </h2> -->
+  
+      <!-- <div class="search-wrapper">
+        <span class="fas fa-search"> </span>
+        <input type="search" placeholder="Search..." />
+        
+      </div> -->
+      <div class="fa-bell">
+        <i class="fa-solid fa-bell"></i>
+      </div>
+  
+      <div class="user-wrapper">
+       <img src="/src/assets/imgs/customer01.jpg" width="40px" height="40px" alt="profile-img">
+       <div class="">
+          <h5>Admin</h5>
+       </div>
+      </div>
+    </header>
+  
+    <main>
+      <div class="cards">
+        <div class="card-single">
+          <div>
+            <h1>50</h1>
+            <span>Patientes</span>
+          </div>
+          <div>
+            <span class="bi bi-person-fill"></span>
+          </div>
+        </div>
+        <div class="card-single">
+          <div>
+            <h1>50</h1>
+            <span>Patientes</span>
+          </div>
+          <div>
+            <span class="bi bi-person-fill"></span>
+          </div>
+        </div>
+        <div class="card-single">
+          <div>
+            <h1>12</h1>
+            <span>Personnels</span>
+          </div>
+          <div>
+            <span><i class="fas fa-hospital-user"></i></span>
+          </div>
+        </div>
+        <div class="card-single">
+          <div>
+            <h1>15</h1>
+            <span>Forums</span>
+          </div>
+          <div>
+            <span class="bi bi-person-fill"></span>
+          </div>
+        </div>
+  
+      </div>
+  
+      <div class="recent-grid">
+        <div class="col-lg-12">
+          <!-- <div class="card table"> -->
+            <!-- <div class="card-header">
+              <h4>Liste Patientes</h4>
+            </div> -->
+            <!-- tableau liste patientes debut -->
+            
+            <!--tableau liste  patientes fin  -->
+            <!-- tableau datatable debut -->
+          <!-- categories -->
+<div class="categories w-50 d-flex justify-content-between mb-5 m-auto">
+    <!-- <button class="btn btnCategorie" btnCategorieActive [ngClass]="{'fond-btn': boutonActif === 1}"(click)="showComponant('all')" (click)="boutonActif = 1">Tous les projets</button> -->
+    <!-- <button class="btn btnCategorie">Santé</button> -->
+    <button class="btn btnCategorie" [ngClass]="{'fond-btn': boutonActif === 2}"(click)="showComponant('technologie')" (click)="boutonActif = 2">Blogs</button>
+    <button class="btn btnCategorie" [ngClass]="{'fond-btn': boutonActif === 3}"(click)="showComponant('mode')" (click)="boutonActif = 3">Ressouces</button>
+    <!-- <button class="btn btnCategorie">Agriculture</button> -->
+    <!-- <button class="btn btnCategorie">Education</button> -->
+</div>
+
+
+
+<!-- carte projet -->
+<div class="carteContainer container">
+    <!-- dropdown Categories -->
+    <div class="dropdown my-5">
+        <a class="btn dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Catégories de projets
+        </a>
+    
+        <ul class="dropdown-menu">
+            <li>
+                <button class="dropdown-item" [ngClass]="{'fond-btn': boutonActif === 1}"(click)="showComponant('all')"
+                 (click)="boutonActif = 1">Tous les projets</button>
+            </li>
+            <li>
+                <button class="dropdown-item" [ngClass]="{'fond-btn': boutonActif === 2}"(click)="showComponant('technologie')" 
+                (click)="boutonActif = 2">Technologie</button>
+            </li>
+            <li>
+                <button class="dropdown-item" [ngClass]="{'fond-btn': boutonActif === 3}"(click)="showComponant('mode')"
+                 (click)="boutonActif = 3">Mode</button>
+            </li>
+            <li>
+                <button class="dropdown-item" [ngClass]="{'fond-btn': boutonActif === 4}" (click)="showComponant('sante')"
+                    (click)="boutonActif = 4">Santé</button>
+            </li>
+            <li>
+                <button class="dropdown-item" [ngClass]="{'fond-btn': boutonActif === 5}" (click)="showComponant('agriculture')"
+                    (click)="boutonActif = 5">Agriculture</button>
+            </li>
+            <li>
+                <button class="dropdown-item" [ngClass]="{'fond-btn': boutonActif === 6}" (click)="showComponant('education')"
+                    (click)="boutonActif = 6">Education</button>
+            </li>
+        </ul>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-12 col-md-4">
+            <div class="carte p-3 shadow" id="all" *ngIf="currentContent === 'all'">
+                <div class="imgCarte mb-3">
+                    <img src="../../../assets/images/bannieres/ban5.jpg" class="card-img-top" alt="...">
+                </div>
+                <div class="p-0">
+                    <h5 class="text-center carteTitre fw-bold">Technologie</h5>
+                    <p class="text-justify">
+                        C'est génial que vous soyez intéressé par un projet lié à la technologie ! Les projets technologiques peuvent couvrir
+                        une variété de domaines en fonction de vos intérêts spécifiques
+                    </p>
+                    <div class="detail d-flex">
+                        <button class="btn w-100">
+                            <a href="#" class="detailLink fw-bold" routerLink="/login">Consulter</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="carte p-3 shadow" id="technologie" *ngIf="currentContent === 'technologie'">
+                <div class="imgCarte mb-3">
+                    <img src="../../../assets/images/bannieres/ban5.jpg" class="card-img-top" alt="...">
+                </div>
+                <div class="p-0">
+                    <h5 class="text-center carteTitre fw-bold">Technologie</h5>
+                    <p class="text-justify">
+                        C'est génial que vous soyez intéressé par un projet lié à la technologie ! Les projets technologiques
+                        peuvent couvrir
+                        une variété de domaines en fonction de vos intérêts spécifiques
+                    </p>
+                    <div class="detail d-flex">
+                        <button class="btn w-100">
+                            <a href="#" class="detailLink fw-bold">Consulter</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="carte p-3 shadow" id="technologie" *ngIf="currentContent === 'technologie'">
+                <div class="imgCarte mb-3">
+                    <img src="https://www.shutterstock.com/fr/image-photo/red-highlighter-ovulation-day-mark-on-730095670" class="card-img-top" alt="...">
+                </div>
+                <div class="p-0">
+                    <h5 class="text-center carteTitre fw-bold">Technologie</h5>
+                    <p class="text-justify">
+                        C'est génial que vous soyez intéressé par un projet lié à la technologie ! Les projets technologiques
+                        peuvent couvrir
+                        une variété de domaines en fonction de vos intérêts spécifiques
+                    </p>
+                    <div class="detail d-flex">
+                        <button class="btn w-100">
+                            <a href="#" class="detailLink fw-bold">Consulter</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+           
+            <!-- tableau datatable fin -->
+          </div>
+  
+        </div>
+        <!-- <div class="customers">
+          <div class="card"> -->
+            <!-- <div class="card-header">
+                <h4>Structures partenaires</h4>
+                <button>See all <span class="fas fa-arrow-right"></span> </button>
+            </div> -->
+            <!-- <div class="card-body">
+                  <div class="customer">
+                    <div class="info">
+                      <img src="https://bit.ly/3bvT89p" height="40px" width="40px" alt="customer">
+                      <div>
+                        <h4>Malik Abushabab</h4>
+                        <small>CEO</small>
+                      </div>
+                    </div>
+                    <div class="contact">
+                        <span class="fas fa-user-circle"></span>
+                        <span class="fas fa-comment"></span>
+                        <span class="fas fa-phone-alt"></span>
+                      </div>
+                  </div>
+                  <div class="customer">
+                    <div class="info">
+                      <img src="https://bit.ly/3bvT89p" height="40px" width="40px" alt="customer">
+                      <div>
+                        <h4>Malik Abushabab</h4>
+                        <small>CEO</small>
+                      </div>
+                    </div>
+                    <div class="contact">
+                        <span class="fas fa-user-circle"></span>
+                        <span class="fas fa-comment"></span>
+                        <span class="fas fa-phone-alt"></span>
+                      </div>
+                  </div>
+                  <div class="customer">
+                    <div class="info">
+                      <img src="https://bit.ly/3bvT89p" height="40px" width="40px" alt="customer">
+                      <div>
+                        <h4>Malik Abushabab</h4>
+                        <small>CEO</small>
+                      </div>
+                    </div>
+                    <div class="contact">
+                        <span class="fas fa-user-circle"></span>
+                        <span class="fas fa-comment"></span>
+                        <span class="fas fa-phone-alt"></span>
+                      </div>
+                  </div>
+                  <div class="customer">
+                    <div class="info">
+                      <img src="https://bit.ly/3bvT89p" height="40px" width="40px" alt="customer">
+                      <div>
+                        <h4>Malik Abushabab</h4>
+                        <small>CEO</small>
+                      </div>
+                    </div>
+                    <div class="contact">
+                        <span class="fas fa-user-circle"></span>
+                        <span class="fas fa-comment"></span>
+                        <span class="fas fa-phone-alt"></span>
+                      </div>
+                  </div>
+                  <div class="customer">
+                    <div class="info">
+                      <img src="https://bit.ly/3bvT89p" height="40px" width="40px" alt="customer">
+                      <div>
+                        <h4>Malik Abushabab</h4>
+                        <small>CEO</small>
+                      </div>
+                    </div>
+                    <div class="contact">
+                        <span class="fas fa-user-circle"></span>
+                        <span class="fas fa-comment"></span>
+                        <span class="fas fa-phone-alt"></span>
+                      </div>
+                  </div>
+                  <div class="customer">
+                    <div class="info">
+                      <img src="https://bit.ly/3bvT89p" height="40px" width="40px" alt="customer">
+                      <div>
+                        <h4>Malik Abushabab</h4>
+                        <small>CEO</small>
+                      </div>
+                    </div>
+                    <div class="contact">
+                        <span class="fas fa-user-circle"></span>
+                        <span class="fas fa-comment"></span>
+                        <span class="fas fa-phone-alt"></span>
+                      </div>
+                  </div>
+                  <div class="customer">
+                    <div class="info">
+                      <img src="https://bit.ly/3bvT89p" height="40px" width="40px" alt="customer">
+                      <div>
+                        <h4>Malik Abushabab</h4>
+                        <small>CEO</small>
+                      </div>
+                    </div>
+                    <div class="contact">
+                        <span class="fas fa-user-circle"></span>
+                        <span class="fas fa-comment"></span>
+                        <span class="fas fa-phone-alt"></span>
+                      </div>
+                  </div>
+                </div> -->
+              <!-- </div> -->
+  
+          <!-- </div>
+          
+        </div>   -->
+        
+      </main>
+    </div>
+  <!-- contenuDash FIN -->
+  <!-- popup pour deconnexion debut -->
+  <!-- popup pour deconnexion  fin -->
+  
+  

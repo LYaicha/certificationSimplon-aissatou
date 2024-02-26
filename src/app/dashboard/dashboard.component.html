@@ -1,0 +1,317 @@
+<input type="checkbox" id="nav-toggle">
+
+<div class="sidebar">
+  <div class="sidebar-brand">
+    <img src="../../../assets/img/Logo2.png" alt="">
+  </div>
+    
+    <div class="sidebar-menu">
+      <div class="image"><img src="/assets/DEM-removebg-preview.png" alt=""></div>
+
+      <ul>
+        <li>
+          <a class="active">
+            <span class="fas fa-tachometer-alt"></span>
+            <span>Tableau de board</span>
+          </a>
+        </li>
+        <li>
+          <a class="switch" [routerLink]="['/listepatientesAdmin']"  >
+            <span class="fas fa-users" ></span>
+            <span>Listes patientes</span>
+          </a>
+        </li>
+        <li>
+          <a  [routerLink]="['/gestionContenuAdmin']">
+            <span class="fas fa-book-reader"></span>
+            <span>Ressources</span>
+          </a>
+        </li>
+        <!-- <li>
+          <a  [routerLink]="['/gestionContenuAdmin']" >
+            <span><i class="fas fa-comments"></i></span>
+            <span>Gestion Contenu</span>
+          </a>
+        </li> -->
+        <li>
+          <a  [routerLink]="['/ajoutPersoAdmin']">
+            <span><i class="fas fa-user-plus"  ></i></span>
+            <span>Gestion Personnel</span>
+          </a>
+        </li>
+        <div class="logout mt-5">
+          <a (click)="logout()">
+            <i class="fas fa-sign-out-alt"></i> Deconnexion
+        </a>
+        </div>
+      
+      </ul>
+
+    </div>
+</div>    
+
+<div class="main-content">
+  <header class="headDash">
+  
+    <div class="fa-bell">
+      <i class="fa-solid fa-bell"></i>
+    </div>
+
+    <div class="user-wrapper">
+     <img src="/src/assets/imgs/customer01.jpg" width="40px" height="40px" alt="profile-img">
+     <div class="">
+        <h5>Admin</h5>
+     </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="cards">
+      <div class="card-single">
+        <div>
+          <h1>50</h1>
+          <span class="text-danger">Patientes</span>
+        </div>
+        <div>
+          <span class="bi bi-person-fill"></span>
+        </div>
+      </div>
+      <div class="card-single">
+        <div>
+          <h1>50</h1>
+          <span class="text-danger">Patientes</span>
+        </div>
+        <div>
+          <span class="bi bi-person-fill"></span>
+        </div>
+      </div>
+      <div class="card-single">
+        <div>
+          <h1>12</h1>
+          <span class="text-danger">Personnels</span>
+        </div>
+        <div>
+          <span><i class="fas fa-hospital-user"></i></span>
+        </div>
+      </div>
+      <div class="card-single">
+        <div>
+          <h1 class="text-dark" >15</h1>
+          <span class="text-danger">Structures Partenaires</span>
+        </div>
+        <div>
+          <span class="text-dark"><i class="fas fa-hospital-user"></i></span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="recent-grid">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-header">
+            <h4>Liste Patientes</h4>
+          </div>
+          <!-- tableau liste patientes debut -->
+          <div class="card-body">
+            <div class="table-responsive">
+              <table width="100%">
+                <thead>
+                    <tr>
+                        <th>Profil</th>
+                        <th>Nomcomplet</th>
+                        <th>Adresse mail</th>
+                        <th>Telephone</th>
+                        <th>Rôle</th>
+                        <th>Statut</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Alphabet puzzle</td>
+                        <td>2016/01/15</td>
+                        <td>Done</td>
+                        <td>1000</td>
+                        <td>
+                            <span>actif</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Layout for poster</td>
+                        <td>2016/01/31</td>
+                        <td>Planned</td>
+                        <td>1834</td>
+                        <td>
+                          <span id="inactif">inactif</span>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Image creation</td>
+                        <td>2016/01/23</td>
+                        <td>To Do</td>
+                        <td>1500</td>
+                        <td>
+                          <span id="inactif">inactif</span>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Create font</td>
+                        <td>2016/02/26</td>
+                        <td>Done</td>
+                        <td>1200</td>
+                        <td>
+                          <span>actif</span>
+
+                        </td>
+
+            </table>
+            </div>
+          </div>
+          <!--tableau liste  patientes fin  -->
+          <!-- tableau datatable debut -->
+        
+          
+          <!-- tableau datatable fin -->
+        </div>
+
+      </div>
+      <!-- <div class="customers">
+        <div class="card"> -->
+          <!-- <div class="card-header">
+              <h4>Structures partenaires</h4>
+              <button>See all <span class="fas fa-arrow-right"></span> </button>
+          </div> -->
+          <!-- <div class="card-body">
+                <div class="customer">
+                  <div class="info">
+                    <img src="https://bit.ly/3bvT89p" height="40px" width="40px" alt="customer">
+                    <div>
+                      <h4>Malik Abushabab</h4>
+                      <small>CEO</small>
+                    </div>
+                  </div>
+                  <div class="contact">
+                      <span class="fas fa-user-circle"></span>
+                      <span class="fas fa-comment"></span>
+                      <span class="fas fa-phone-alt"></span>
+                    </div>
+                </div>
+                <div class="customer">
+                  <div class="info">
+                    <img src="https://bit.ly/3bvT89p" height="40px" width="40px" alt="customer">
+                    <div>
+                      <h4>Malik Abushabab</h4>
+                      <small>CEO</small>
+                    </div>
+                  </div>
+                  <div class="contact">
+                      <span class="fas fa-user-circle"></span>
+                      <span class="fas fa-comment"></span>
+                      <span class="fas fa-phone-alt"></span>
+                    </div>
+                </div>
+                <div class="customer">
+                  <div class="info">
+                    <img src="https://bit.ly/3bvT89p" height="40px" width="40px" alt="customer">
+                    <div>
+                      <h4>Malik Abushabab</h4>
+                      <small>CEO</small>
+                    </div>
+                  </div>
+                  <div class="contact">
+                      <span class="fas fa-user-circle"></span>
+                      <span class="fas fa-comment"></span>
+                      <span class="fas fa-phone-alt"></span>
+                    </div>
+                </div>
+                <div class="customer">
+                  <div class="info">
+                    <img src="https://bit.ly/3bvT89p" height="40px" width="40px" alt="customer">
+                    <div>
+                      <h4>Malik Abushabab</h4>
+                      <small>CEO</small>
+                    </div>
+                  </div>
+                  <div class="contact">
+                      <span class="fas fa-user-circle"></span>
+                      <span class="fas fa-comment"></span>
+                      <span class="fas fa-phone-alt"></span>
+                    </div>
+                </div>
+                <div class="customer">
+                  <div class="info">
+                    <img src="https://bit.ly/3bvT89p" height="40px" width="40px" alt="customer">
+                    <div>
+                      <h4>Malik Abushabab</h4>
+                      <small>CEO</small>
+                    </div>
+                  </div>
+                  <div class="contact">
+                      <span class="fas fa-user-circle"></span>
+                      <span class="fas fa-comment"></span>
+                      <span class="fas fa-phone-alt"></span>
+                    </div>
+                </div>
+                <div class="customer">
+                  <div class="info">
+                    <img src="https://bit.ly/3bvT89p" height="40px" width="40px" alt="customer">
+                    <div>
+                      <h4>Malik Abushabab</h4>
+                      <small>CEO</small>
+                    </div>
+                  </div>
+                  <div class="contact">
+                      <span class="fas fa-user-circle"></span>
+                      <span class="fas fa-comment"></span>
+                      <span class="fas fa-phone-alt"></span>
+                    </div>
+                </div>
+                <div class="customer">
+                  <div class="info">
+                    <img src="https://bit.ly/3bvT89p" height="40px" width="40px" alt="customer">
+                    <div>
+                      <h4>Malik Abushabab</h4>
+                      <small>CEO</small>
+                    </div>
+                  </div>
+                  <div class="contact">
+                      <span class="fas fa-user-circle"></span>
+                      <span class="fas fa-comment"></span>
+                      <span class="fas fa-phone-alt"></span>
+                    </div>
+                </div>
+              </div> -->
+            </div>
+
+        <!-- </div>
+        
+      </div>   -->
+      <!-- <div class="card-group">
+          <div class="card">
+            <img src="/assets/image.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+            </div>
+          </div>
+          <div class="card">
+            <img src="/assets/image.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+            </div>
+          </div>
+          <div class="card">
+            <img src="/assets/image.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+            </div>
+          
+          </div>
+        </div> -->
+    </main>
+  </div>

@@ -1,0 +1,198 @@
+<input type="checkbox" id="nav-toggle">
+
+<div class="sidebar">
+    <div class="sidebar-brand">
+        <img src="../../../assets/img/Logo2.png" alt="">
+    </div>
+
+    <div class="sidebar-menu">
+        <div class="image"><img src="/assets/DEM-removebg-preview.png" alt=""></div>
+
+        <ul>
+            <li>
+                <a class="switch" [routerLink]="['/monCycle']">
+                    <span class="fas fa-tachometer-alt"></span>
+                    <span>Mon cycle</span>
+                </a>
+            </li>
+            <li>
+                <a class="active">
+                    <span class="fas fa-users"></span>
+                    <span>Forum</span>
+                </a>
+            </li>
+            <li>
+
+                <!-- <li>
+        <a href="#">
+            <span><i class="fas fa-comments"></i></span>
+            <span>Gestion Contenu</span>
+        </a>
+        </li> -->
+                <!-- <li>
+        <a href="#">
+            <span><i class="fas fa-user-plus"></i></span>
+            <span>Ajout Personel</span>
+        </a>
+        </li> -->
+        <div class="logout mt-5">
+            <a (click)="logout()">
+            <i class="fas fa-sign-out-alt"></i> Deconnexion
+        </a>
+          </div>
+
+        </ul>
+
+    </div>
+</div>
+
+<div class="main-content">
+
+    <main>
+        <div class="card table">
+            <div class="card-header">
+                <div class="navbar navbar-expand-lg justify-content-center" id="nav">
+                    <div class="d-flex justify-content-around">
+
+                        <a class="nav-link active" type="button" aria-current="page" (click)="changeBloc(0)" style="color: white;"><i
+                                class="bi bi-list-check" ></i>Liste Forum </a>
+                        <a class="nav-link"  type="button" (click)="changeBloc(1)" style="color: white;"><i
+                                class="bi bi-cloud-plus-fill"></i> Ajout
+                            Forum</a>
+                    </div>
+                    <!-- <div class="container"> -->
+                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <div class="navbar-nav d-flex justify-content-around" id="navbar">
+                            <!-- <a class="nav-link"(click)="changeBloc(2)" ><i class="bi bi-trash3-fill"></i> Corbeille</a> -->
+                            <!-- <a class="nav-link" (click)="deconnexion()"><i class="bi bi-box-arrow-left" ></i> Déconnexion</a> -->
+                        </div>
+                    </div>
+                    <!-- </div> -->
+                </div>
+            </div>
+
+
+            <div class="container mt-5">
+
+
+
+                <!-- la liste des Forum -->
+                <div class="list-contact" *ngIf="blocChoice==0">
+
+                    <div *ngFor="let forum of getArticlesPage()" class="card mt-2" id="cardForum">
+                        <h5 class="card-header" style="color:black">{{forum.titre}}</h5>
+                        <div class="card-body d-flex">
+
+                            <div class="" style="width: 15%;">
+                                <img style="height:100px; width: 100px;" src="http://localhost:8000/images/{{forum.image}}" alt="fff">
+                            </div>
+                            <div class="" style="width: 85%;">
+
+                                <!-- <h5 class="card-title"><i class="bi bi-telephone-fill"></i> {{contact.telephone}}, <i class="bi bi-envelope"></i> {{contact.email}}</h5> -->
+                                <p class="card-text" style="color:black">{{forum.texte}}</p>
+                                <div>
+
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal" (click)="editForum(forum)">Modifier</button>
+                                    <a class="btn  mx-2" style="color:black">Supprimer</a>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- pour la pagination -->
+    <div class="d-flex justify-content-center my-5">
+    <button class="btn btnColore me-2" [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1">
+        Précédent
+    </button>
+    <button class="btn btnColor ms-2" *ngFor="let page of pages" (click)="pageActuelle = page">
+      {{ page }}
+    </button>
+    <button class="btn btnColore ms-2" [disabled]="pageActuelle === totalPages" (click)="pageActuelle = pageActuelle + 1">
+      Suivant
+    </button>
+  </div>
+
+                </div>
+
+                <!-- Formulaire d'ajout de Forum -->
+                <!-- [formGroup]="registerForm" (ngSubmit)="submitForm()"  -->
+
+                <div class="w-50 m-auto mt-5 formualire" *ngIf="blocChoice==1">
+                    <form [formGroup]="forumForm" (ngSubmit)="submitForm()" action="#" class="signin-form">
+
+                        <div class="mb-3">
+                            <label for="nom" class="form-label">Titre</label>
+                            <input type="text" class="form-control" formControlName="titre" id="titre">
+                        </div>
+                        <div class="mb-3">
+                            <!-- <label for="avatar">Choisir une Image</label> -->
+                            <input (change)="onchange($event)" type="file" id="image" name="image"
+                                formControlName="image" accept="image/png, image/jpeg" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label" style="color:black">Description</label>
+                            <textarea class="form-control" id="description" formControlName="texte" rows="3"
+                                style="color:black"></textarea>
+                        </div>
+
+                        <div class="text-center">
+                            <button class="btn btn-secondary w-50">Ajouter</button>
+                        </div>
+
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <!-- formulaire de modification Forum -->
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content text-black">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier Forum</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <!-- <form [formGroup]="editForm" (ngSubmit)="submitForm()">
+                        <label for="edit-titre">Titre:</label>
+                        <input type="text" id="edit-titre" formControlName="titre">
+                        
+                        <label for="edit-image">Image:</label>
+                        <input type="file" id="edit-image" (change)="onchange($event)" formControlName="image">
+                        
+                        <label for="edit-texte">Texte:</label>
+                        <textarea id="edit-texte" formControlName="texte"></textarea>
+                        
+                        <button type="submit">Enregistrer les modifications</button>
+                    </form> -->
+                    <form [formGroup]="editForm" (ngSubmit)="submitFormEdit()">
+                        <div class="modal-body">
+                            <div class="mb-3 text-dark">
+                                <label for="nom" class="form-label">Titre</label>
+                                <input type="text" class="form-control" formControlName="titre" id="titre">
+                            </div>
+                            <div class="mb-3 text-dark">
+                                <!-- <label for="avatar">Choisir une Image</label> -->
+                                <input (change)="onchange($event)" type="file" id="image" name="image"
+                                    formControlName="image" accept="image/png, image/jpeg" />
+                            </div>
+                            <div class="mb-3 text-dark">
+                                <label for="description" class="form-label" style="color:black">Description</label>
+                                <textarea class="form-control" id="description" formControlName="texte" rows="3"
+                                    style="color:black"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Modifier</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

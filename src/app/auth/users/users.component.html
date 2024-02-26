@@ -1,0 +1,63 @@
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 col-lg-10">
+                <div class="wrap d-md-flex">
+                    <div class="img"
+                        style="background-image: url(https://img.freepik.com/photos-premium/femme-affaires-heureuse-portrait-studio-sourire-excite-fier-du-travail-publicite-travailleuse-africaine-fond-rose-employe-creatif-toute-confiance_590464-209647.jpg?size=626&ext=jpg&uid=R115724857&ga=GA1.1.1463458479.1706261075&semt=ais);">
+                    </div>
+                    <!-- <div>
+                        <img src="https://img.freepik.com/photos-gratuite/medecin-smiley-coup-moyen-au-travail_23-2149726937.jpg?size=626&ext=jpg&uid=R115724857&ga=GA1.2.1463458479.1706261075&semt=ais" alt="">
+                    </div> -->
+                    <div class="login-wrap p-4 p-md-5">
+                        <div class="d-flex">
+                            <div class="w-75">
+                                <h4 class="mb-4">Inscription</h4>
+                            </div>
+                        </div>
+                        <form [formGroup]="registerForm" (ngSubmit)="submitForm()" action="#" class="signin-form">
+                            <div class="form-group mb-3">
+                                <label class="label" for="nom">Prenom & Nom</label>
+                                <input type="text" class="form-control" formControlName="nom" id="nom" placeholder="Nom" required name="nom"
+                                >
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="label" for="email">Email</label>
+                                <input type="text" class="form-control" id="email" formControlName="email" placeholder="Email" required name="email">
+                                <p class="text-danger" >{{error}}</p>
+                                <!-- <div class="text-danger" *ngIf="registerForm.get('email'),[.Validators.required, Validators.pattern]">L'email est requis</div> -->
+                                <!-- <div class="text-danger" *ngIf="FormGroup.get('email').errors?.pattern">L'email n'est pas valide</div> -->
+
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="label" for="password">Mot de passe</label>
+                                <input type="password" class="form-control" formControlName="password" placeholder="mot de passe" required id="password"
+                                    name="password">
+                                <!-- <div class="text-danger" *ngIf="FormGroup.get('password').errors?.required">Le mot de passe est requis</div> -->
+                                <!-- <div class="text-danger" *ngIf="FormGroup.get('password').errors?.validator.min">Le mot de passe doit etre superieur à 8 caractéres!</div> -->
+                                <!-- <div class="text-danger" *ngIf="FormGroup.get('password').errors?.validator.max">Le mot de passe doit etre inférieure à 20 caractéres!</div> -->
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="label" for="telephone">Telephone</label>
+                                <input type="text" class="form-control" formControlName="telephone" placeholder="Telephone" required id="telephone"
+                                    name="telephone">
+                            </div>
+                            
+                            <div class="form-group mb-3">
+                                <label class="label" for="image">Image</label>
+                                <input type="text" class="form-control" formControlName="image" id="image" required name="image"
+                                >
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="form-control btn btn-primary rounded submit px-3 fw-bold "
+                                    >S'incrire</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Formulaire de connexion pourPS -->

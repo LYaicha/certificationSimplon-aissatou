@@ -1,0 +1,142 @@
+<!-- formulaire d'inscription -->
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 col-lg-10">
+                <div class="wrap d-md-flex">
+                    <div class="img"
+                        style="background-image: url(https://img.freepik.com/photos-premium/portrait-jeune-beaute-afro-musulmane-moderne-portant-vetements-islamiques-traditionnels-fond-blanc_530697-62631.jpg?size=626&ext=jpg&uid=R115724857&ga=GA1.2.1463458479.1706261075&semt=ais);">
+                    </div>
+                    <!-- <div>
+                        <img src="https://img.freepik.com/photos-gratuite/medecin-smiley-coup-moyen-au-travail_23-2149726937.jpg?size=626&ext=jpg&uid=R115724857&ga=GA1.2.1463458479.1706261075&semt=ais" alt="">
+                    </div> -->
+                    <!-- inscription -->
+                    <!-- *ngIf="!showForm" -->
+                    <!-- <div class="login-wrap p-4 p-md-5" >
+                        <div class="d-flex">
+                            <div class="w-75">
+                                <h4 class="mb-4">Inscription</h4>
+                            </div>
+                            <div class="w-100">
+                                <p class="social-media d-flex justify-content-end">
+                                    <a href="#"
+                                        class="social-icon d-flex align-items-center justify-content-center"><span
+                                            class="fa fa-facebook"></span></a>
+                                    <a href="#"
+                                        class="social-icon d-flex align-items-center justify-content-center"><span
+                                            class="fa fa-twitter"></span></a>
+                                </p>
+                            </div>
+                        </div>
+                        <form action="#" class="signin-form">
+                            <div class="form-group mb-3">
+                                <label class="label" for="nom">Prenom & Nom</label>
+                                <input type="text" class="form-control" id="nom" placeholder="Nom" required name="nom"
+                                >
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="label" for="email">Email</label>
+                                <input type="text" class="form-control" id="email" placeholder="Email" required name="email"
+                                >
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="label" for="password">Mot de passe</label>
+                                <input type="password" class="form-control" placeholder="mot de passe" required id="password"
+                                    name="password">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="label" for="telephone">Telephone</label>
+                                <input type="text" class="form-control" placeholder="Telephone" required id="telephone"
+                                    name="telephone">
+                            </div>
+                            
+                            <div class="form-group mb-3">
+                                <label class="label" for="matricule">Matricule</label>
+                                <input type="text" class="form-control" required name="matricule"
+                                >
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="label" for="structure">Structure</label>
+                                <input type="text" class="form-control" placeholder="structure" required id="structure"
+                                    name="structure">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="label" for="service">Service</label>
+                                <input type="text" class="form-control" placeholder="Service" required id="Service"
+                                    name="Service">
+                            </div>
+                            
+                            
+                            <div class="form-group">
+                                <button type="submit" class="form-control btn btn-primary rounded submit px-3 fw-bold "
+                                    >S'incrire</button>
+                            </div>
+                        </form>
+                    </div> -->
+                    <!-- end  -->
+                    <!-- login -->
+                    <!-- *ngIf="showForm" -->
+                    <div class="login-wrap p-4 p-md-5" >
+                        <div class="d-flex">
+                            <div class="w-100">
+                                <h3 class="mb-4"  text-dark>Connexion</h3>
+                            </div>
+                        </div>
+                        <form action="#" class="signin-form">
+                              <div class="mb-3">
+                <label for="emailInput" class="form-label text-dark">Adresse email:</label>
+                <input type="email" name="email" class="form-control" id="emailInput" [(ngModel)] = "email" (input)="verifEmailFonction()">
+                <p class="text-danger" *ngIf="!exactEmail">{{verifEmail}}</p>
+                <p class="text-success" *ngIf="exactEmail"><i class="bi bi-check2-all"></i> Exact !</p>
+            </div>
+            <div class="mb-3">
+                <label for="passwordInput" class="form-labe  text-dark" >Mot de passe : </label>
+                <input type="password" name="password" class="form-control" id="passwordInput" [(ngModel)] = "password" (input)="verifPasswordFonction()">
+                <p class="text-danger" *ngIf="!exactPassword">{{verifPassword}}</p>
+                <p class="text-success" *ngIf="exactPassword"><i class="bi bi-check2-all"></i> Exact !</p>
+            </div>
+                            <!-- <div class="form-group mb-3">
+                                <label class="label" for="email">Email</label>
+                                <input type="email" class="form-control" placeholder="Email" required name="email" id="email" [(ngModel)] = "emailConnexion">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="label" for="password">Mot de passe</label>
+                                <input type="password" class="form-control" placeholder="mot de passe" required name="password" [(ngModel)] = "passwordConnexion">
+                            </div> -->
+                            <div class="form-group">
+                                <button type="submit" class="form-control btn btn-primary rounded submit px-3 fw-bold " (click)="login()">Connexion</button>
+                            </div>
+                            <div>   
+                                <!-- (click)="switchForm()" -->
+                                    <span class="text-dark">Pas de compte &nbsp;</span>
+                                    <!-- <a style="color:#e75076; cursor:pointer" [routerLink]="['/choixDirection']">S'inscrire </a> -->
+                                    <button type="button" class="btn btn-primary m-3" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">S'inscrire</button>
+
+                            </div>
+                        </form>
+                    </div>
+                    <!-- end -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- modal Choix Direction -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="border-radius: 15px; cursor:pointer; margin:5px" [routerLink]="['/inscriptionperson']">Je suis personnel(le) de santé</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="border-radius: 15px; cursor:pointer; margin:5px"  [routerLink]="['/inscriptionuser']">Je suis utilisateur simple</button>
+            
+        </div>
+        <div class="modal-footer">
+        </div>
+        </div>
+    </div>
+</div>
