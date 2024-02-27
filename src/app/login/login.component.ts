@@ -31,7 +31,7 @@ email: any;
   error!: string;
    // Variables Si les valeurs sont exactes
    exactEmailCon : boolean = false;
-   exactPasswordCon : boolean = false; 
+   exactPasswordCon : boolean = false;
      // Variables si les champs sont exacts
    exactEmail : boolean = false;
    exactPassword : boolean = false;
@@ -46,7 +46,7 @@ email: any;
   }
 
   // methode pour la connexion
-  
+
 // methode pour la connexion
 login() {
 
@@ -69,17 +69,19 @@ login() {
         .userConnect(localStorage.getItem('access_token'))
         .subscribe((user) => {
           console.log('role',user.role);
+          console.log('id user connect',user.id);
           if (user.role == 'admin') {
             this.router.navigate(['dashboard']);
           } else if (user.role == 'personnelsante') {
             this.router.navigate(['gestionRVPS']);
           } else if (user.role == 'utilisateur') {
             this.router.navigate(['monCycle']);
+            
           }
         });
       console.log(response.access_token);
     });
-  
+
   }
 
   viderChamps(){
@@ -92,7 +94,7 @@ login() {
   verifEmailFonction(){
     const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,}$/;
     this.exactEmail = false;
-    
+
     if(this.email == ""){
       this.verifEmail = "Veuillez renseigner votre email";
     }
@@ -105,7 +107,7 @@ login() {
     }
   }
 
-    // Verification du mot de passe 
+    // Verification du mot de passe
     verifPasswordFonction(){
       this.exactPassword = false;
       if(this.password == ""){

@@ -22,24 +22,11 @@
                 </a>
             </li>
             <li>
-
-                <!-- <li>
-        <a href="#">
-            <span><i class="fas fa-comments"></i></span>
-            <span>Gestion Contenu</span>
-        </a>
-        </li> -->
-                <!-- <li>
-        <a href="#">
-            <span><i class="fas fa-user-plus"></i></span>
-            <span>Ajout Personel</span>
-        </a>
-        </li> -->
-        <div class="logout mt-5">
+        <div class="logout mt-5" type="button">
             <a (click)="logout()">
             <i class="fas fa-sign-out-alt"></i> Deconnexion
         </a>
-          </div>
+        </div>
 
         </ul>
 
@@ -53,7 +40,6 @@
             <div class="card-header">
                 <div class="navbar navbar-expand-lg justify-content-center" id="nav">
                     <div class="d-flex justify-content-around">
-
                         <a class="nav-link active" type="button" aria-current="page" (click)="changeBloc(0)" style="color: white;"><i
                                 class="bi bi-list-check" ></i>Liste Forum </a>
                         <a class="nav-link"  type="button" (click)="changeBloc(1)" style="color: white;"><i
@@ -90,13 +76,16 @@
 
                                 <!-- <h5 class="card-title"><i class="bi bi-telephone-fill"></i> {{contact.telephone}}, <i class="bi bi-envelope"></i> {{contact.email}}</h5> -->
                                 <p class="card-text" style="color:black">{{forum.texte}}</p>
+
                                 <div>
-
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal" (click)="editForum(forum)">Modifier</button>
-                                    <a class="btn  mx-2" style="color:black" (click)="SupprimerForum(forum.id)" >Supprimer</a>
-
+                                  <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal" (click)="editForum(forum)" style="color: white;" >Modifier</button>
+                                    <a class="btn" style="color:black" (click)="SupprimerForum(forum.id)" >Supprimer</a>
+                                  <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailModal" (click)="getDetailForum(forum)" style="color: white;" >
+                                      Details
+                                  </button>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -113,13 +102,9 @@
       Suivant
     </button>
   </div>
-
-                </div>
-
-                <!-- Formulaire d'ajout de Forum -->
-                <!-- [formGroup]="registerForm" (ngSubmit)="submitForm()"  -->
-
-                <div class="w-50 m-auto mt-5 formualire" *ngIf="blocChoice==1">
+</div>
+    <!-- Formulaire d'ajout de Forum -->
+      <div class="w-50 m-auto mt-5 formualire" *ngIf="blocChoice==1">
                     <form [formGroup]="forumForm" (ngSubmit)="submitForm()" action="#" class="signin-form">
 
                         <div class="mb-3">
@@ -144,36 +129,23 @@
 
                     </form>
 
-                </div>
-            </div>
-        </div>
-        <!-- formulaire de modification Forum -->
-
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      </div>
+      </div>
+      </div>
+      <!-- formulaire de modification Forum -->
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content text-black">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier Forum</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <!-- <form [formGroup]="editForm" (ngSubmit)="submitForm()">
-                        <label for="edit-titre">Titre:</label>
-                        <input type="text" id="edit-titre" formControlName="titre">
-
-                        <label for="edit-image">Image:</label>
-                        <input type="file" id="edit-image" (change)="onchange($event)" formControlName="image">
-
-                        <label for="edit-texte">Texte:</label>
-                        <textarea id="edit-texte" formControlName="texte"></textarea>
-
-                        <button type="submit">Enregistrer les modifications</button>
-                    </form> -->
                     <form [formGroup]="editForm" (ngSubmit)="ModifierForum()">
                         <div class="modal-body">
                             <div class="mb-3 text-dark">
-                                <label for="nom" class="form-label">Titre</label>
-                                <input type="text" class="form-control" formControlName="titre" id="titre" [(ngModel)]="titre">
+                                <label for="nom" class="form-label text-dark">Titre</label>
+                                <input type="text" class="form-control text-dark" formControlName="titre" id="titre" [(ngModel)]="titre">
                             </div>
                             <div class="mb-3 text-dark">
                                 <!-- <label for="avatar">Choisir une Image</label> -->
@@ -193,6 +165,35 @@
                     </form>
                 </div>
             </div>
+      </div>
+
+
+      <!-- Modal detail -->
+      <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Detail blog</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="card mb-3" style="max-width: 540px;">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src="http://localhost:8000/images/{{selectedForumId.image}}" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">{{selectedForumId.titre}}</h5>
+                <p class="card-text text-dark">{{selectedForumId.texte}}</p>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+    </div>
+  </div>
+      </div>
+
     </main>
 </div>

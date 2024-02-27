@@ -18,7 +18,7 @@ export class DossierMedicService {
   }
 
   getDoMeds(): Observable<any> {
-    return this.http.get<any>(`${apiUrl}/listes_generale_DM`);
+    return this.http.get<any>(`${apiUrl}/listes_totale_DM`);
   }
 
   getDoMed(id: number): Observable<any> {

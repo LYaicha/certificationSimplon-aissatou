@@ -88,6 +88,10 @@ export class ForumComponent implements OnInit {
           }
         );
   }
+  getDetailForum(forum: any) {
+    this.selectedForumId = forum;
+  }
+
 
   ModifierForum() {
     const formData = new FormData();

@@ -5,7 +5,7 @@
   <div class="sidebar-brand">
     <img src="../../../assets/img/Logo2.png" alt="">
   </div>
-  
+
   <div class="sidebar-menu">
     <!-- <div class="image"><img src="/assets/DEM-removebg-preview.png" alt=""></div> -->
 
@@ -33,16 +33,16 @@
           <i class="fas fa-sign-out-alt"></i> Deconnexion
       </a>
       </div>
-    
+
     </ul>
 
   </div>
-</div>    
+</div>
 
 <!-- sidebar Fin -->
-  
+
   <!-- contenuDash debut -->
-  
+
   <div class="main-content">
     <header class="headDash">
       <!-- <h2>
@@ -51,16 +51,16 @@
         </label>
         Dashboard
       </h2> -->
-  
+
       <!-- <div class="search-wrapper">
         <span class="fas fa-search"> </span>
         <input type="search" placeholder="Search..." />
-        
+
       </div> -->
       <div class="fa-bell">
         <i class="fa-solid fa-bell"></i>
       </div>
-  
+
       <div class="user-wrapper">
        <img src="/src/assets/imgs/customer01.jpg" width="40px" height="40px" alt="profile-img">
        <div class="">
@@ -68,7 +68,7 @@
        </div>
       </div>
     </header>
-  
+
     <main>
 
       <div class="recent-grid">
@@ -78,13 +78,13 @@
               <h4>Liste Patientes</h4>
             </div>
             <!-- tableau liste patientes debut -->
-            
+
             <!--tableau liste  patientes fin  -->
             <!-- tableau datatable debut -->
-          <!--button formulaire-->  
+          <!--button formulaire-->
           <button type="button" class="btn btn-primary m-3 text-white fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Ajouter Patientes</button>
           <!-- listes des patientes debut-->
-  <table datatable [dtOptions]="dtOptions" class="row-border hover table" id="DataTabl">
+  <table datatable [dtOptions]="dtOptions" class="row-border hover table" id="DataTabl" *ngIf="dossierMedicals.length > 0">
     <thead>
       <tr>
         <th>ID</th>
@@ -98,292 +98,150 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>1</td>
-        <td>Foo</td>
-        <td>Bar</td>
-        <td>25</td>
-        <td>775414005</td>
-        <td>Pillule</td>
-        <td>Parcelles</td>
+      <tr *ngFor="let dossier of dossierMedicals">
+        <td>{{dossier.dossier_medical.id}} </td>
+        <td>{{dossier.dossier_medical.nom}}</td>
+        <td>{{dossier.dossier_medical.prenom}}</td>
+        <td>{{dossier.dossier_medical.age}}</td>
+        <td>{{dossier.dossier_medical.telephone}}</td>
+        <td>{{dossier.dossier_medical.methode_choisie}}</td>
+        <td>{{dossier.dossier_medical.adresse}}</td>
         <td>
           <i class="far fa-eye"></i> &nbsp; &nbsp;
           <i class="fas fa-pencil-alt"></i>&nbsp; &nbsp;
           <i class="fas fa-trash-alt"></i>
         </td>
       </tr>
-      <tr>
-        <td>2</td>
-        <td>Someone</td>
-        <td>Youknow</td>
-        <td>25</td>
-        <td>778456622</td>
-        <td>Pillule</td>
-        <td>Parcelles</td>
-        <td>
-          <i class="far fa-eye"></i> &nbsp; &nbsp;
-          <i class="fas fa-pencil-alt"></i>&nbsp; &nbsp;
-          <i class="fas fa-trash-alt"></i>
-        </td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>Iamout</td>
-        <td>Ofinspiration</td>
-        <td>25</td>
-        <td>778456622</td>
-        <td>Pillule</td>
-        <td>Parcelles</td>
-        <td>
-          <i class="far fa-eye"></i> &nbsp; &nbsp;
-          <i class="fas fa-pencil-alt"></i>&nbsp; &nbsp;
-          <i class="fas fa-trash-alt"></i>
-        </td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td>Yoda</td>
-        <td>Skywalker</td>
-        <td>25</td>
-        <td>773692514</td>
-        <td>Pillule</td>
-        <td>Parcelles</td>
-        <td>
-          <i class="far fa-eye"></i> &nbsp; &nbsp;
-          <i class="fas fa-pencil-alt"></i>&nbsp; &nbsp;
-          <i class="fas fa-trash-alt"></i>
-        </td>
-      </tr>
-      <tr>
-        <td>5</td>
-        <td>Patrick</td>
-        <td>Dupont</td>
-        <td>25</td>
-        <td>778459612</td>
-        <td>Pillule</td>
-        <td>Parcelles</td>
-        <td>
-          <i class="far fa-eye"></i> &nbsp; &nbsp;
-          <i class="fas fa-pencil-alt"></i>&nbsp; &nbsp;
-          <i class="fas fa-trash-alt"></i>
-        </td>
-      </tr>
-      <tr>
-        <td>6</td>
-        <td>Barack</td>
-        <td>Obama</td>
-        <td>25</td>
-        <td>778459612</td>
-        <td>Pillule</td>
-        <td>Parcelles</td>
-        <td>
-          <i class="far fa-eye"></i> &nbsp; &nbsp;
-          <i class="fas fa-pencil-alt"></i>&nbsp; &nbsp;
-          <i class="fas fa-trash-alt"></i>
-        </td>
-      </tr>
-      <tr>
-        <td>7</td>
-        <td>François</td>
-        <td>Holland</td>
-        <td>25</td>
-        <td>771234569</td>
-        <td>Pillule</td>
-        <td>Parcelles</td>
-        <td>
-          <i class="far fa-eye"></i> &nbsp; &nbsp;
-          <i class="fas fa-pencil-alt"></i>&nbsp; &nbsp;
-          <i class="fas fa-trash-alt"></i>
-        </td>
-      </tr>
-      <tr>
-        <td>8</td>
-        <td>Michel</td>
-        <td>Popo</td>
-        <td>25</td>
-        <td>784561239</td>
-        <td>Pillule</td>
-        <td>Parcelles</td>
-        <td>
-          <i class="far fa-eye"></i> &nbsp; &nbsp;
-          <i class="fas fa-pencil-alt"></i>&nbsp; &nbsp;
-          <i class="fas fa-trash-alt"></i>
-        </td>
-      </tr>
-      <tr>
-        <td>9</td>
-        <td>Chuck</td>
-        <td>Norris</td>
-        <td>25</td>
-        <td>767894566</td>
-        <td>Pillule</td>
-        <td>Parcelles</td>
-        <td>
-          <i class="far fa-eye"></i> &nbsp; &nbsp;
-          <i class="fas fa-pencil-alt"></i>&nbsp; &nbsp;
-          <i class="fas fa-trash-alt"></i>
-        </td>
-      </tr>
-      <tr>
-        <td>10</td>
-        <td>Simon</td>
-        <td>Robin</td>
-        <td>25</td>
-        <td>751237896</td>
-        <td>Pillule</td>
-        <td>Parcelles</td>
-        <td>
-          <i class="far fa-eye"></i> &nbsp; &nbsp;
-          <i class="fas fa-pencil-alt"></i>&nbsp; &nbsp;
-          <i class="fas fa-trash-alt"></i>
-        </td>
-      </tr>
-      <tr>
-        <td>11</td>
-        <td>Louis</td>
-        <td>Lin</td>
-        <td>25</td>
-        <td>767894561</td>
-        <td>Pillule</td>
-        <td>Parcelles</td>
-        <td>
-          <i class="far fa-eye"></i> &nbsp; &nbsp;
-          <i class="fas fa-pencil-alt"></i>&nbsp; &nbsp;
-          <i class="fas fa-trash-alt"></i>
-        </td>
-      </tr>
-      <tr>
-        <td>12</td>
-        <td>Zelda</td>
-        <td>Link</td>
-        <td>25</td>
-        <td>752114535</td>
-        <td>Pillule</td>
-        <td>Parcelles</td>
-        <td>
-          <i class="far fa-eye"></i> &nbsp; &nbsp;
-          <i class="fas fa-pencil-alt"></i>&nbsp; &nbsp;
-          <i class="fas fa-trash-alt"></i>
-        </td>
-      </tr>
+
     </tbody>
   </table>
   <!-- listes des patientes  fin-->
             <!-- tableau datatable fin -->
           </div>
-  
+
         </div>
 
               </div>
-  
-        
+
+
       </main>
     </div>
   <!-- contenuDash FIN -->
 
-  
-  
+
+
 
 
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Information Patientes</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Ajout Patient</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form class="ajoutPatient">
           <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">numero_Identification</label>
-            <input type="text" class="form-control" id="recipient-name">
+            <label for="recipient-name" class="col-form-label">numero identification</label>
+            <input type="text" class="form-control" id="recipient-name" name="numero_Identification" [(ngModel)]="numero_Identification">
           </div>
           <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Nom</label>
-            <input type="text" class="form-control" id="recipient-name">
+            <label for="recipient-name" class="col-form-label">nom</label>
+            <input type="text" class="form-control" id="recipient-name" name="nom" [(ngModel)]="nom">
           </div>
           <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Prenom</label>
-            <input type="text" class="form-control" id="recipient-name">
+            <label for="recipient-name" class="col-form-label">prenom</label>
+            <input type="text" class="form-control" id="recipient-name" name="prenom" [(ngModel)]="prenom">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">email</label>
+            <input type="email" class="form-control" id="recipient-name" name="email" [(ngModel)]="email">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">telephone</label>
+            <input type="text" class="form-control" id="recipient-name" name="telephone" [(ngModel)]="telephone">
           </div>
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">statut</label>
-            <input type="text" class="form-control" id="recipient-name">
+            <input type="text" class="form-control" id="recipient-name" name="statut" [(ngModel)]="statut">
           </div>
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">age</label>
-            <input type="text" class="form-control" id="recipient-name">
+            <input type="text" class="form-control" id="recipient-name" name="age" [(ngModel)]="age">
           </div>
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">adresse</label>
-            <input type="text" class="form-control" id="recipient-name">
+            <input type="text" class="form-control" id="recipient-name" name="adresse" [(ngModel)]="adresse">
           </div>
           <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">poste_avortement</label>
-            <input type="text" class="form-control" id="recipient-name">
+            <label for="recipient-name" class="col-form-label">poste avortement</label>
+            <select class="form-select form-select-sm" aria-label="Small select example" name="poste_avortement" [(ngModel)]="poste_avortement">
+              <option selected></option>
+              <option value="1">Oui</option>
+              <option value="0">Non</option>
+            </select>
           </div>
           <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">poste_partum</label>
-            <input type="text" class="form-control" id="recipient-name">
+            <label for="recipient-name" class="col-form-label">poste partum</label>
+            <select class="form-select form-select-sm" aria-label="Small select example" name="poste_partum" [(ngModel)]="poste_partum">
+              <option selected></option>
+              <option value="1">Oui</option>
+              <option value="0">Non</option>
+            </select>
           </div>
           <div class="input-group mb-3">
             <button class="btn btn-outline-secondary" type="button">Methode en cours</button>
-            <select class="form-select" id="inputGroupSelect03" placeholder="methode choisie" aria-label="Example select with button addon">
+            <select class="form-select text-dark" id="inputGroupSelect03" placeholder="methode choisie" aria-label="Example select with button addon" name="methode_en_cours" [(ngModel)]="methode_en_cours">
               <!-- <option selected>Methode choisie</option> -->
-              <option value="1">Nean</option>
-              <option value="1">PillulePP</option>
-              <option value="2">PillulePO</option>
-              <option value="3">DUI-Hormonal</option>
-              <option value="3">DUI-NH</option>
-              <option value="3">Injection</option>
-              <option value="3">Implant</option>
-              <option value="3">Anneau-Vaginal</option>
-              <option value="3">Condom</option>
+              <option value="pilule">Pillule</option>
+              <option value="dui">Dui</option>
+              <option value="cu">Contraceptive d'urgent</option>
+              <option value="injection">Injection</option>
+              <option value="implant">Implant</option>
+              <option value="anneau_vaginal_a_progestrone">Anneau-Vaginal</option>
+              <option value="codom">Condom</option>
             </select>
           </div>
           <div class="input-group mb-3">
             <button class="btn btn-outline-secondary" type="button">Methode Choisie</button>
-            <select class="form-select" id="inputGroupSelect03" placeholder="methode choisie" aria-label="Example select with button addon">
+            <select class="form-select" id="inputGroupSelect03" placeholder="methode choisie" aria-label="Example select with button addon" name="methode_choisie" [(ngModel)]="methode_choisie">
               <!-- <option selected>Methode choisie</option> -->
-              <option value="1">Nean</option>
-              <option value="1">PillulePP</option>
-              <option value="2">PillulePO</option>
-              <option value="3">DUI-Hormonal</option>
-              <option value="3">DUI-NH</option>
-              <option value="3">Injection</option>
-              <option value="3">Implant</option>
-              <option value="3">Anneau-Vaginal</option>
-              <option value="3">Condom</option>
+              <option value="pilule">Pillule</option>
+              <option value="dui">Dui</option>
+              <option value="cu">Contraceptive d'urgent</option>
+              <option value="injection">Injection</option>
+              <option value="implant">Implant</option>
+              <option value="anneau_vaginal_a_progestrone">Anneau-Vaginal</option>
+              <option value="codom">Condom</option>
             </select>
           </div>
           <div class="mb-3">
-            <label for="message-text" class="col-form-label">raison_de_la_visite</label>
-            <textarea class="form-control" id="message-text"></textarea>
+            <label for="message-text" class="col-form-label">raison de la visite</label>
+            <textarea class="form-control" id="message-text" name="raison_de_la_visite" [(ngModel)]="raison_de_la_visite"></textarea>
           </div>
           <div class="mb-3">
-            <label for="message-text" class="col-form-label">effets_indesirables_complications</label>
-            <textarea class="form-control" id="message-text"></textarea>
+            <label for="message-text" class="col-form-label">effets indesirables complications</label>
+            <textarea class="form-control" id="message-text" name="effets_indesirables_complications" [(ngModel)]="effets_indesirables_complications"></textarea>
           </div>
           <div class="mb-3">
-            <label for="message-text" class="col-form-label">observation</label>
-            <textarea class="form-control" id="message-text"></textarea>
+            <label for="message-text" class="col-form-label">date visite</label>
+            <input id="date" type="date" value="2017-06-01" class="form-control" name="date_visite" [(ngModel)]="date_visite"/>
           </div>
           <div class="mb-3">
-            <label for="message-text" class="col-form-label">date_visite</label>
-            <input id="date" type="date" value="2017-06-01" />
+            <label for="message-text" class="col-form-label ">date prochain rv</label>
+            <input  class=" text-primary" id="date" type="date" value="2017-06-01"  class="form-control" name="date_prochain_rv" [(ngModel)]="date_prochain_rv"/>
           </div>
           <div class="mb-3">
-            <label for="message-text" class="col-form-label ">date_prochain_rv</label>
-            <input  class=" text-primary" id="date" type="date" value="2017-06-01" />
+            <label for="message-text" class="col-form-label">indication</label>
+            <textarea class="form-control" id="message-text" name="indication" [(ngModel)]="indication"></textarea>
           </div>
 
-      
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Enregistrer</button>
+        <button type="button" class="btn btn-primary" (click)="AjoutPatient()">Enregistrer</button>
       </div>
     </div>
   </div>
