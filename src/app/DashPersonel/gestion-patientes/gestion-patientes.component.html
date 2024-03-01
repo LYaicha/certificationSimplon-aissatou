@@ -28,7 +28,7 @@
           <span>Ressources</span>
         </a>
       </li>
-      <div class="logout mt-5">
+      <div class="logout mt-5" type="button">
         <a (click)="logout()">
           <i class="fas fa-sign-out-alt"></i> Deconnexion
       </a>
@@ -45,12 +45,12 @@
 
   <div class="main-content">
     <header class="headDash">
-      <!-- <h2>
-        <label for="nav-toggle">
+
+        <!-- <label for="nav-toggle">
           <span class="fas fa-bars"></span>
         </label>
-        Dashboard
-      </h2> -->
+        Dashboard -->
+
 
       <!-- <div class="search-wrapper">
         <span class="fas fa-search"> </span>
@@ -107,12 +107,33 @@
         <td>{{dossier.dossier_medical.methode_choisie}}</td>
         <td>{{dossier.dossier_medical.adresse}}</td>
         <td>
-          <i class="far fa-eye"></i> &nbsp; &nbsp;
-          <i class="fas fa-pencil-alt"></i>&nbsp; &nbsp;
-          <i class="fas fa-trash-alt"></i>
+          <!-- <span  data-bs-toggle="modal" data-bs-target="#DossierMedical"> -->
+          <i class="far fa-eye"  type="button" data-bs-toggle="modal" data-bs-target="#DossierMedical" (click)="getDetailDoM(dossier)"></i> &nbsp; &nbsp;
+        <!-- </span> -->
+          <i class="fas fa-pencil-alt" type="button" data-bs-toggle="modal" data-bs-target="#modifocationModalLabel" (click)="chargerInfosDM(dossier)"></i>&nbsp; &nbsp;
+          <i class="fas fa-trash-alt" type="button" (click)="supprimer(dossier.dossier_medical.id)"></i>
         </td>
       </tr>
 
+    </tbody>
+  </table>
+  <table datatable [dtOptions]="dtOptions" class="row-border hover table" id="DataTabl" *ngIf="dossierMedicals.length < 0">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Prenom</th>
+        <th>Age</th>
+        <th>Telephone</th>
+        <th>Methode</th>
+        <th>Adresse</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td colspan="6">Aucune patiente disponible</td>
+      </tr>
     </tbody>
   </table>
   <!-- listes des patientes  fin-->
@@ -132,7 +153,7 @@
 
 
 
-
+  <!-- formulaire d'ajout patiente -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable">
     <div class="modal-content">
@@ -142,10 +163,6 @@
       </div>
       <div class="modal-body">
         <form class="ajoutPatient">
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">numero identification</label>
-            <input type="text" class="form-control" id="recipient-name" name="numero_Identification" [(ngModel)]="numero_Identification">
-          </div>
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">nom</label>
             <input type="text" class="form-control" id="recipient-name" name="nom" [(ngModel)]="nom">
@@ -241,8 +258,165 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="AjoutPatient()">Enregistrer</button>
+        <button type="button" class="btn btn-primary" (click)="AjoutPatient()" data-bs-dismiss="modal">Enregistrer</button>
       </div>
     </div>
   </div>
 </div>
+
+
+
+<!-- Popup Detail Dossier medical -->
+
+<div class="modal fade" id="DossierMedical" tabindex="-1" aria-labelledby="DossierMedicalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="DossierMedicalLabel">Dossier Medical</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body d-flex justify-content-between text-dark"  *ngIf="dossierMedicals && selectedDossierId && selectedDossierId.dossier_medical">
+      <div class="infPatiente">
+        <p>numero_Identification:{{selectedDossierId.dossier_medical.numero_Identification}}</p>
+        <p>Nom:{{selectedDossierId.dossier_medical.nom}}</p>
+        <p>Email: {{selectedDossierId.dossier_medical.email}}</p>
+        <p>Telephone:{{selectedDossierId.dossier_medical.telephone}}</p>
+        <p>Adresse:{{selectedDossierId.dossier_medical.adresse}}</p>
+        <p>Age:{{selectedDossierId.dossier_medical.age}}</p>
+        <p>Statut:{{selectedDossierId.dossier_medical.statut}}</p>
+
+      </div>
+      <div class="infDossierMedical">
+        <p>Poste avortement:{{selectedDossierId.dossier_medical.poste_avortement}}</p>
+        <p>Poste partum: {{selectedDossierId.dossier_medical.poste_partum}}</p>
+        <p>Methode en cours: {{selectedDossierId.dossier_medical.methode_en_cours}}</p>
+        <p>Methode choisie:{{selectedDossierId.dossier_medical.methode_choisie}}</p>
+        <p>Effet indesirables:{{selectedDossierId.dossier_medical.effets_indesirables_complications}}</p>
+        <p>Raison de la visite:{{selectedDossierId.dossier_medical.raison_de_la_visite}}</p>
+        <p>indications: {{selectedDossierId.dossier_medical.indication}}</p>
+        <p>Date de RV: {{selectedDossierId.dossier_medical.date_visite}}</p>
+        <p>Prochain RV:{{selectedDossierId.dossier_medical.date_prochain_rv}}</p>
+        <!-- <p *ngIf="priseEnChargePar">Pris en charge par:  {{ this.priseEnChargePar.user.nom}}</p> -->
+      </div>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+        <button type="button" class="btn btn-primary">Imprimer</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+  <!-- formulaire de modification patiente -->
+  <div class="modal fade" id="modifocationModalLabel" tabindex="-1" aria-labelledby="modifocationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="modifocationModalLabel">Modifier Patiente</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form class="ajoutPatient">
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">nom</label>
+              <input type="text" class="form-control" id="recipient-name" name="nom" [(ngModel)]="nomUpdate">
+            </div>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">prenom</label>
+              <input type="text" class="form-control" id="recipient-name" name="prenom" [(ngModel)]="prenomUpdate">
+            </div>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">email</label>
+              <input type="email" class="form-control" id="recipient-name" name="email" [(ngModel)]="emailUpdate">
+            </div>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">telephone</label>
+              <input type="text" class="form-control" id="recipient-name" name="telephone" [(ngModel)]="telephoneUpdate">
+            </div>
+            <div class="mb-3">
+              <select class="form-select form-select-sm" aria-label="Small select example" name="statut" [(ngModel)]="statutUpdate">
+                <option selected></option>
+                <option value="Nouvelle">Nouvelle</option>
+                <option value="Ancienne">Ancienne</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">age</label>
+              <input type="text" class="form-control" id="recipient-name" name="age" [(ngModel)]="ageUpdate">
+            </div>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">adresse</label>
+              <input type="text" class="form-control" id="recipient-name" name="adresse" [(ngModel)]="adresseUpdate">
+            </div>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">poste avortement</label>
+              <select class="form-select form-select-sm" aria-label="Small select example" name="poste_avortement" [(ngModel)]="poste_avortementUpdate">
+                <option selected></option>
+                <option value="1">Oui</option>
+                <option value="0">Non</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">poste partum</label>
+              <select class="form-select form-select-sm" aria-label="Small select example" name="poste_partum" [(ngModel)]="poste_partumUpdate">
+                <option selected></option>
+                <option value="1">Oui</option>
+                <option value="0">Non</option>
+              </select>
+            </div>
+            <div class="input-group mb-3">
+              <button class="btn btn-outline-secondary" type="button">Methode en cours</button>
+              <select class="form-select text-dark" id="inputGroupSelect03" placeholder="methode choisie" aria-label="Example select with button addon" name="methode_en_cours" [(ngModel)]="methode_en_coursUpdate">
+                <!-- <option selected>Methode choisie</option> -->
+                <option value="pilule">Pillule</option>
+                <option value="dui">Dui</option>
+                <option value="cu">Contraceptive d'urgent</option>
+                <option value="injection">Injection</option>
+                <option value="implant">Implant</option>
+                <option value="anneau_vaginal_a_progestrone">Anneau-Vaginal</option>
+                <option value="codom">Condom</option>
+              </select>
+            </div>
+            <div class="input-group mb-3">
+              <button class="btn btn-outline-secondary" type="button">Methode Choisie</button>
+              <select class="form-select" id="inputGroupSelect03" placeholder="methode choisie" aria-label="Example select with button addon" name="methode_choisie" [(ngModel)]="methode_choisieUpdate">
+                <!-- <option selected>Methode choisie</option> -->
+                <option value="pilule">Pillule</option>
+                <option value="dui">Dui</option>
+                <option value="cu">Contraceptive d'urgent</option>
+                <option value="injection">Injection</option>
+                <option value="implant">Implant</option>
+                <option value="anneau_vaginal_a_progestrone">Anneau-Vaginal</option>
+                <option value="codom">Condom</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">raison de la visite</label>
+              <textarea class="form-control" id="message-text" name="raison_de_la_visite" [(ngModel)]="raison_de_la_visiteUpdate"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">effets indesirables complications</label>
+              <textarea class="form-control" id="message-text" name="effets_indesirables_complications" [(ngModel)]="effets_indesirables_complicationsUpdate"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">date visite</label>
+              <input id="date" type="date" value="2017-06-01" class="form-control" name="date_visite" [(ngModel)]="date_visiteUpdate"/>
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label ">date prochain rv</label>
+              <input  class=" text-primary" id="date" type="date" value="2017-06-01"  class="form-control" name="date_prochain_rv" [(ngModel)]="date_prochain_rvUpdate"/>
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">indication</label>
+              <textarea class="form-control" id="message-text" name="indication" [(ngModel)]="indicationUpdate"></textarea>
+            </div>
+
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+          <button type="button" class="btn btn-primary" (click)="ModifierDossier()" data-bs-dismiss="modal">Modifier</button>
+        </div>
+      </div>
+    </div>
+  </div>

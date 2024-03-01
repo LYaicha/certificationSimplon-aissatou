@@ -1,4 +1,3 @@
-
 // import { Component } from '@angular/core';
 // import { Component, OnInit } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
@@ -20,7 +19,6 @@ export class AjoutPersonelComponent {
   allDossierMedical: any[] = [];
 
   dossierMedicalPatient: any;
-
 
   constructor(
     private route: Router,
@@ -50,10 +48,9 @@ export class AjoutPersonelComponent {
   //   });
   // }
 
-
   getAllPS() {
     this.psService.getAllPersolleSante().subscribe((response) => {
-      this.allPersSante = response.liste_des_;
+      this.allPersSante = response.liste_des_personnels_de_sante;
     });
   }
 
@@ -64,17 +61,18 @@ export class AjoutPersonelComponent {
     });
   }
 
-  getDossierMedical(idPatient: number) {
-    this.dossierMedicalPatient = this.allDossierMedical.find(
-      (elt: any) => elt.id_patient === idPatient
-    );
-    console.log(this.dossierMedicalPatient.information_de_utilisateur);
-    console.log(this.dossierMedicalPatient.information_du_dossier_medical);
-    console.log(idPatient);
-    this.getPersonnelleSante(
-      this.dossierMedicalPatient.information_du_dossier_medical
-        .personnelsante_id
-    );
+  validerPersonelleSante(idPatient: number) {
+    this.psService.validerPS(idPatient).subscribe((data) => {
+      console.log(data);
+      this.getAllPS();
+    });
+  }
+
+  invaliderPersonelleSante(idPatient: number) {
+    this.psService.invaliderPS(idPatient).subscribe((data) => {
+      console.log(data);
+      this.getAllPS();
+    });
   }
 
   priseEnChargePar: any;
@@ -94,4 +92,3 @@ export class AjoutPersonelComponent {
     });
   }
 }
-

@@ -21,6 +21,14 @@ export class DossierMedicService {
     return this.http.get<any>(`${apiUrl}/listes_totale_DM`);
   }
 
+  getDoMedsAdmin(): Observable<any>{
+    return this.http.get<any>(`${apiUrl}/listes_generale_DM`);
+  }
+
+  getDoMedDetailAdmin(id: number): Observable<any>{
+    return this.http.get<any>(`${apiUrl}/Detail_DM/${id}`);
+  }
+
   getDoMed(id: number): Observable<any> {
     return this.http.get<any>(`${apiUrl}/${id}`);
   }
@@ -29,12 +37,12 @@ export class DossierMedicService {
     return this.http.post<any>(`${apiUrl}/enregistrer_Dossier_Medical`, DM);
   }
 
-  updateDoMed(id: number, DM: any): Observable<any> {
-    return this.http.put<any>(`${apiUrl}/update_DM/{dossier_Medical}`,DM);
+  updateDoMed(dossier_Medical: number, DM: any): Observable<any> {
+    return this.http.post<any>(`${apiUrl}/update_DM/${dossier_Medical}`,DM);
   }
 
   deleteDoMed(id: number): Observable<any> {
-    return this.http.delete<any>(`${apiUrl}/archiver_DM/{dossier_Medical}`);
+    return this.http.delete<any>(`${apiUrl}/archiver_DM/${id}`);
   }
 }
 

@@ -5,7 +5,7 @@
   <div class="sidebar-brand">
     <img src="../../../assets/img/Logo2.png" alt="">
   </div>
-    
+
     <div class="sidebar-menu">
       <div class="image"><img src="/assets/DEM-removebg-preview.png" alt=""></div>
 
@@ -45,11 +45,11 @@
             <i class="fas fa-sign-out-alt"></i> Deconnexion
         </a>
         </div>
-      
+
       </ul>
 
     </div>
-</div>    
+</div>
 
 <!-- sidebar Fin -->
 
@@ -67,7 +67,7 @@
     <!-- <div class="search-wrapper">
       <span class="fas fa-search"> </span>
       <input type="search" placeholder="Search..." />
-      
+
     </div> -->
     <div class="fa-bell">
       <i class="fa-solid fa-bell"></i>
@@ -82,7 +82,7 @@
   </header>
 
   <main>
-    
+
 
     <div class="recent-grid">
       <div class="col-lg-12">
@@ -90,33 +90,32 @@
           <div class="card-header">
             <h4>Liste Patientes</h4>
           </div>
-        
+
           <!-- listes des patientes debut-->
-<table datatable [dtOptions]="dtOptions" class="row-border hover table" id="DataTabl" *ngIf="allPatient.length > 0">
+<table datatable [dtOptions]="dtOptions" class="row-border hover table" id="DataTabl" *ngIf="allDossierMedical.length > 0">
   <thead>
     <tr>
       <th>Id </th>
       <th>Nom</th>
       <th>Email</th>
       <th>Telephone</th>
-      <th>Role</th>
       <!-- <th>Statut_compte</th> -->
       <th>Actions</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of allPatient">
+    <tr *ngFor="let item of allDossierMedical">
       <td> {{item.id}} </td>
       <td>{{item.nom}}</td>
       <td>{{item.email}}</td>
       <td>{{item.telephone}}</td>
-      <td>{{item.role}}</td>
+
       <!-- <td>{{item.statut_compte == 0 ? "Inactif" : "Actif"}}</td> -->
       <td><i class="far fa-eye" (click)="getDossierMedical(item.id)" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#DossierMedical"></i></td>
     </tr>
   </tbody>
 </table>
-<table datatable [dtOptions]="dtOptions" class="row-border hover table" id="DataTabl" *ngIf="allPatient.length < 0">
+<table datatable [dtOptions]="dtOptions" class="row-border hover table" id="DataTabl" *ngIf="allDossierMedical.length < 0">
   <thead>
     <tr>
       <th>Id </th>
@@ -130,7 +129,7 @@
   </thead>
   <tbody>
     <tr>
-      <td colspan="6">Aucun patient disponible</td> 
+      <td colspan="6">Aucun patient disponible</td>
     </tr>
   </tbody>
 </table>
@@ -140,10 +139,10 @@
         </div>
 
       </div>
-    
+
             </div>
 
-      
+
     </main>
   </div>
 <!-- contenuDash FIN -->
@@ -161,27 +160,27 @@
       </div>
       <div class="modal-body d-flex justify-content-between text-dark"  *ngIf="dossierMedicalPatient">
       <div class="infPatiente">
-        <p>Nom: {{ dossierMedicalPatient.information_de_utilisateur.nom}} </p>
-        <p>Email: {{ dossierMedicalPatient.information_de_utilisateur.email}} </p>
-        <p>Telephone: {{ dossierMedicalPatient.information_de_utilisateur.telephone}} </p>
-        <p>Role: {{ dossierMedicalPatient.information_de_utilisateur.role}} </p>
-        <p>Age: {{ dossierMedicalPatient.information_du_dossier_medical.age}} </p>
-        <p>Statut: {{ dossierMedicalPatient.information_du_dossier_medical.statut}} </p>
-        <!-- <p *ngIf="priseEnChargePar">Pris en charge par:  {{ this.priseEnChargePar.user.structure}}</p> -->
+        <p>Nom: {{ dossierMedicalPatient.nom}} </p>
+        <p>Email: {{ dossierMedicalPatient.email}} </p>
+        <p>Telephone: {{ dossierMedicalPatient.telephone}} </p>
+        <p>Role: {{ dossierMedicalPatient.role}} </p>
+        <p>Age: {{ dossierMedicalPatient.age}} </p>
+        <p>Statut: {{ dossierMedicalPatient.statut}} </p>
+        <p *ngIf="priseEnChargePar">Pris en charge par:  {{ this.priseEnChargePar.user.structure}}</p>
 
       </div>
       <div class="infDossierMedical">
-        <p>numero_Identification:  {{ dossierMedicalPatient.information_du_dossier_medical.numero_Identification}}</p>
-        <p>Poste avortement:  {{ dossierMedicalPatient.information_du_dossier_medical.post_avortement}}</p>
-        <p>Poste partum:  {{ dossierMedicalPatient.information_du_dossier_medical.post_partum}}</p>
-        <p>Methode en cours:  {{ dossierMedicalPatient.information_du_dossier_medical.methode_en_cours}}</p>
-        <p>Methode choisie:  {{ dossierMedicalPatient.information_du_dossier_medical.methode_choisie}}</p>
-        <p>Effet indesirables:  {{ dossierMedicalPatient.information_du_dossier_medical.effets_indesirables}}</p>
-        <p>Raison de la visite:  {{ dossierMedicalPatient.information_du_dossier_medical.raison_de_la_visite}}</p>
-        <p>Observations/ Antecedents:  {{ dossierMedicalPatient.information_du_dossier_medical.observation}}</p>
-        <p>indications:  {{ dossierMedicalPatient.information_du_dossier_medical.indication}}</p>
-        <p>Date de RV:  {{ dossierMedicalPatient.information_du_dossier_medical.date_visite}}</p>
-        <p>Prochain RV:  {{ dossierMedicalPatient.information_du_dossier_medical.date_prochain_rv}}</p>
+        <p>numero_Identification:  {{ dossierMedicalPatient.numero_Identification}}</p>
+        <p>Poste avortement:  {{ dossierMedicalPatient.post_avortement}}</p>
+        <p>Poste partum:  {{ dossierMedicalPatient.post_partum}}</p>
+        <p>Methode en cours:  {{ dossierMedicalPatient.methode_en_cours}}</p>
+        <p>Methode choisie:  {{ dossierMedicalPatient.methode_choisie}}</p>
+        <p>Effet indesirables:  {{ dossierMedicalPatient.effets_indesirables}}</p>
+        <p>Raison de la visite:  {{ dossierMedicalPatient.raison_de_la_visite}}</p>
+        <p>Observations/ Antecedents:  {{ dossierMedicalPatient.observation}}</p>
+        <p>indications:  {{ dossierMedicalPatient.indication}}</p>
+        <p>Date de RV:  {{ dossierMedicalPatient.date_visite}}</p>
+        <p>Prochain RV:  {{ dossierMedicalPatient.date_prochain_rv}}</p>
         <p *ngIf="priseEnChargePar">Pris en charge par:  {{ this.priseEnChargePar.user.nom}}</p>
       </div>
       </div>

@@ -32,7 +32,7 @@ export class ContenuServiceService {
   }
 
   updateContenu(id: number, contenu: any): Observable<any> {
-    return this.http.put<any>(`${apiUrl}/update_ressource/${id}`, contenu);
+    return this.http.post<any>(`${apiUrl}/update_ressource/${id}`, contenu);
   }
 
   deleteContenu(id: number): Observable<any> {

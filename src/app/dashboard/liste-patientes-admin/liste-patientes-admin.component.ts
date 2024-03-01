@@ -50,23 +50,20 @@ export class ListePatientesAdminComponent {
   }
 
   getAllDossierMedical() {
-    this.dossierMedical.getDoMeds().subscribe((response) => {
-      this.allDossierMedical = response.liste_des_dossiers_medicaux;
+    this.dossierMedical.getDoMedsAdmin().subscribe((response) => {
+      this.allDossierMedical = response.Liste_des_dossiers_medicaux;
       console.log(this.allDossierMedical);
     });
   }
 
   getDossierMedical(idPatient: number) {
-    this.dossierMedicalPatient = this.allDossierMedical.find(
-      (elt: any) => elt.id_patient === idPatient
-    );
-    console.log(this.dossierMedicalPatient.information_de_utilisateur);
-    console.log(this.dossierMedicalPatient.information_du_dossier_medical);
-    console.log(idPatient);
-    this.getPersonnelleSante(
-      this.dossierMedicalPatient.information_du_dossier_medical
-        .personnelsante_id
-    );
+   this.dossierMedical.getDoMedDetailAdmin(idPatient).subscribe(
+    (data: any)=>{
+
+      this.dossierMedicalPatient = data.liste_des_details_dossier_medical;
+      console.log(this.dossierMedicalPatient);
+
+    })
   }
 
   priseEnChargePar: any;

@@ -25,10 +25,10 @@ export class PSService {
   }
 
   validerPS(id: number): Observable<any> {
-    return this.http.delete<any>(`${apiUrl}/valider/{id}`);
+    return this.http.put<any>(`${apiUrl}/valider/${id}`, {});
   }
-  
+
   invaliderPS(id: number): Observable<any> {
-    return this.http.delete<any>(`${apiUrl}/invalider/{id}`);
+    return this.http.put<any>(`${apiUrl}/invalider/${id}`,{});
   }
 }
